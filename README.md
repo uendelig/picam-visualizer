@@ -1,6 +1,6 @@
 # picam-visualizer
 
-> A Vue.js project
+> picam-project (front and back)
 
 ## Build Setup
 
