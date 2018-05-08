@@ -22,4 +22,4 @@ jobs:
         args:
         - -exc
         - |
-          echo "Build auto"
+          echo "Build auto - trigger"
