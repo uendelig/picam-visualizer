@@ -1,14 +1,14 @@
 resources:
-- name: picam-visualizer-repo-resource
+- name: picam-visualizer
   type: git
   source:
     branch: master
     uri: https://github.com/uendelig/picam-visualizer.git
 
 jobs:
-- name: Run-automatically
+- name: Build
   plan:
-  - get: picam-visualizer-repo-resource
+  - get: picam-visualizer
     trigger: true
   - task: build-task
     config:
@@ -16,10 +16,17 @@ jobs:
       image_resource:
         type: docker-image
         source:
-          repository: ubuntu
+          repository: node
+      inputs:
+        - name: picam-visualizer
+      outputs:
+        - name: picam-visualizer/dist
       run:
         path: sh
         args:
         - -exc
         - |
-          echo "Build auto - trigger"
+          cd picam-visualizer
+          npm install
+          npm run build
+          echo "Build Finished"
